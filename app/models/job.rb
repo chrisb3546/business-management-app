@@ -1,4 +1,5 @@
 class Job < ApplicationRecord
-  belongs_to :Service
-  belongs_to :Client
+  belongs_to :service_technician
+  belongs_to :client
+  belongs_to :service
 end

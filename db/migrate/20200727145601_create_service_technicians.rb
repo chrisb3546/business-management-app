@@ -1,6 +1,6 @@
-class CreateServiceTeches < ActiveRecord::Migration[6.0]
+class CreateServiceTechnicians < ActiveRecord::Migration[6.0]
   def change
-    create_table :service_teches do |t|
+    create_table :service_technicians do |t|
       t.string :name
       t.string :services
       t.belongs_to :User, null: false, foreign_key: true

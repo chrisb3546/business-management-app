@@ -1,0 +1,7 @@
+<h1>Wecome <%=@user.username%></h1>
+
+<%= link_to 'See all techs', user_service_technicians_path(@user) %>
+<%= link_to 'logout', logout_path, method: "delete" %>
+<%= link_to 'add new tech', new_user_service_technician_path(@user) %>
+<%= link_to 'add new job', new_job_path %>
+<%= link_to 'services', user_services_path(@user) %>

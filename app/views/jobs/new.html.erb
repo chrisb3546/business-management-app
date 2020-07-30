@@ -1,0 +1,18 @@
+<%=form_for @job do |f|%>
+<%=f.label :location%>
+<%=f.text_field :location%>
+<br>
+<%=f.label :scheduled_for?%>
+<%=f.datetime_select :scheduled_for?, start_year: 2020, ampm: true%>
+<br>
+<%=f.label :completed?%>
+<%=f.check_box :completed?%>
+<br>
+<%=f.label :duration%>
+<%=f.text_field :duration%>
+<br>
+<%=f.label :notes%>
+<%=f.text_area :notes%>
+<br>
+<%=f.submit%>
+<%end %>

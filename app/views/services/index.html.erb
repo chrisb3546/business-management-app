@@ -1,0 +1,6 @@
+Service index page
+<%@services.each do |s|%>
+<li>
+<%= link_to s.name, service_path(s) %>
+</li>
+<%end%>

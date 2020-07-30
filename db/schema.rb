@@ -15,16 +15,17 @@ ActiveRecord::Schema.define(version: 2020_07_27_151140) do
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.text "location"
-    t.integer "Service_tech_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["Service_tech_id"], name: "index_clients_on_Service_tech_id"
+    t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
   create_table "jobs", force: :cascade do |t|
     t.integer "service_technician_id", null: false
     t.integer "client_id", null: false
     t.integer "service_id", null: false
+    t.integer "user_id", null: false
     t.text "location"
     t.string "duration"
     t.text "notes"
@@ -35,36 +36,42 @@ ActiveRecord::Schema.define(version: 2020_07_27_151140) do
     t.index ["client_id"], name: "index_jobs_on_client_id"
     t.index ["service_id"], name: "index_jobs_on_service_id"
     t.index ["service_technician_id"], name: "index_jobs_on_service_technician_id"
+    t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
   create_table "service_technicians", force: :cascade do |t|
     t.string "name"
     t.string "services"
-    t.integer "User_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["User_id"], name: "index_service_technicians_on_User_id"
+    t.index ["user_id"], name: "index_service_technicians_on_user_id"
   end
 
   create_table "services", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.float "price"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_services_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
     t.string "business_name"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "clients", "Service_teches"
+  add_foreign_key "clients", "users"
   add_foreign_key "jobs", "clients"
   add_foreign_key "jobs", "service_technicians"
   add_foreign_key "jobs", "services"
-  add_foreign_key "service_technicians", "Users"
+  add_foreign_key "jobs", "users"
+  add_foreign_key "service_technicians", "users"
+  add_foreign_key "services", "users"
 end

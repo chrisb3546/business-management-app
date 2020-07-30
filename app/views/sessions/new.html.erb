@@ -1,17 +1,14 @@
-<h1>Signup</h1>
-
-<%=form_for @user do |f|%>
+<h1>Login</h1>
+<%= flash[:message] if flash[:message]%>
+<%=form_for :user do |f|%>
 <%=f.label :username%>
 <%=f.text_field :username%>
 <br>
 <%=f.label :business_name%>
 <%=f.text_field :business_name%>
 <br>
-<%=f.label :email%>
-<%=f.email_field :email%>
-<br>
 <%=f.label :password%>
 <%=f.password_field :password%>
 <br>
-<%=f.submit%>
+<%=f.submit "login"%>
 <%end%>

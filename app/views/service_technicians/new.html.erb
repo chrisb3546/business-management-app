@@ -1,0 +1,12 @@
+<h1> Add a new member to the team!</h1>
+
+<%=form_for ([@user, @service_technician]) do |f|%>
+<%=f.label :name%>
+<%=f.text_field :name%>
+
+<%=f.hidden_field :user_id%>
+
+<br>
+<%=f.submit%>
+<%end%>
+

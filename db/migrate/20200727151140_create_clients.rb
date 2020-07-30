@@ -3,8 +3,8 @@ class CreateClients < ActiveRecord::Migration[6.0]
     create_table :clients do |t|
       t.string :name
       t.text :location
-      t.belongs_to :Service_tech, null: false, foreign_key: true
-
+      t.belongs_to :user, null: false, foreign_key: true
+      
       t.timestamps
     end
   end

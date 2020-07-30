@@ -1,0 +1,15 @@
+service new page
+
+<%=form_for @service do |f|%>
+<%=f.label :name%>
+<%=f.text_field :name%>
+<br>
+<%=f.label :description%>
+<%=f.text_area :description%>
+<br>
+<%=f.label :price%>
+<%=f.number_field :price, step: 0.1%>
+<br>
+
+<%=f.submit%>
+<%end %>

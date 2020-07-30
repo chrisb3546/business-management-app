@@ -1,7 +1,11 @@
 <h1>Wecome <%=@user.username%></h1>
-
+<li>
 <%= link_to 'See all techs', user_service_technicians_path(@user) %>
+</li>
+<li>
 <%= link_to 'logout', logout_path, method: "delete" %>
-<%= link_to 'add new tech', new_user_service_technician_path(@user) %>
-<%= link_to 'add new job', new_job_path %>
-<%= link_to 'services', user_services_path(@user) %>
+</li>
+<li><%= link_to 'add new tech', new_user_service_technician_path(@user) %></li>
+<li><%= link_to 'add new job', new_job_path %></li>
+<li><%= link_to 'services', user_services_path(@user) %></li>
+<li><%= link_to 'add service', new_user_service_path(@user) %></li>

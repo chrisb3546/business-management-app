@@ -1,2 +1,4 @@
 Tech Show Page
 <%=@service_technician.name%>
+<%= link_to 'edit', edit_user_service_technician_path(@service_technician.user, @service_technician) %>
+<%= link_to "Delete service_technician", user_service_technician_path(@service_technician.user, @service_technician), method: "delete"%>

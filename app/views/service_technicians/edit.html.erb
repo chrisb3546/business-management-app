@@ -1,0 +1,12 @@
+<h1>Edit service_technician</h1>
+
+
+<%=form_for ([@user, @service_technician]) do |f|%>
+<%=f.label :name%>
+<%=f.text_field :name%>
+
+<%=f.hidden_field :user_id%>
+
+<br>
+<%=f.submit%>
+<%end%>

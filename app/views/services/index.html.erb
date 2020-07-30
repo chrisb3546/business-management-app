@@ -1,6 +1,6 @@
 Service index page
 <%@services.each do |s|%>
 <li>
-<%= link_to s.name, service_path(s) %>
+<%= link_to s.name, user_service_path(s.user, s) %>
 </li>
 <%end%>

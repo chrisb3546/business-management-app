@@ -1,0 +1,8 @@
+client show page
+<br>
+<%=@client.name%>
+<br>
+<%=@client.location%>
+<br>
+<%= link_to 'edit', edit_user_client_path(@client.user, @client) %>
+<%= link_to "Delete client", user_client_path(@client.user, @client), method: "delete"%>

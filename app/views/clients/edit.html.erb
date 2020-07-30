@@ -1,0 +1,15 @@
+edit client
+<%=form_for ([@user, @client]) do |f|%>
+<%=f.label :name%>
+<%=f.text_field :name%>
+<br>
+<%=f.label :location%>
+<%=f.text_field :location%>
+<br>
+
+
+<%=f.hidden_field :user_id%>
+
+<br>
+<%=f.submit%>
+<%end%>

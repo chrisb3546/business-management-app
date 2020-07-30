@@ -1,0 +1,6 @@
+<h1>clients index page</h1>
+<%@clients.each do |c|%>
+<li>
+<%= link_to c.name, user_client_path(c.user, c) %>
+</li>
+<%end%>

@@ -1,4 +1,14 @@
-<%=form_for @job do |f|%>
+
+<% if @job.errors.any? %>
+<ul>
+  <% @job.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+
+<%=form_for ([@user, @job]) do |f|%>
 <%=f.label :location%>
 <%=f.text_field :location%>
 <br>
@@ -14,5 +24,10 @@
 <%=f.label :notes%>
 <%=f.text_area :notes%>
 <br>
+<%=f.collection_select :service_id, Service.all, :id, :name%>
+<br>
+<%=f.collection_select :service_technician_id, ServiceTechnician.all, :id, :name%>
+<br>
+<%=f.collection_select :client_id, Client.all, :id, :name%>
 <%=f.submit%>
 <%end %>

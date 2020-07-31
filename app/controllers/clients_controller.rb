@@ -24,7 +24,7 @@ class ClientsController < ApplicationController
 
     def create 
         if params[:user_id] && @user = User.find_by(id: params[:user_id])
-        @client = current_user.clients.build(clientparams)
+        @client = current_user.clients.build(client_params)
         redirect_if_not_authorized
             if @client.save
            
@@ -58,7 +58,7 @@ class ClientsController < ApplicationController
             @client = Client.find_by(id: params[:id])
             redirect_if_not_authorized
         end
-        if @client.update(clientparams)
+        if @client.update(client_params)
            
                 redirect_to user_client_path(current_user, @client)
         else 
@@ -77,7 +77,7 @@ class ClientsController < ApplicationController
 
 
     private 
-    def clientparams
+    def client_params
         params.require(:client).permit(:name, :location, :user_id)
         
     end

@@ -1,1 +1,6 @@
 indexpage
+<%@jobs.each do |job|%>
+<%=job.location%>
+<br>
+<%=job.scheduled_for?%>
+<%end%>

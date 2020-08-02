@@ -1,0 +1,32 @@
+<% if @job.errors.any? %>
+<ul>
+  <% @job.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+
+<%=form_for ([@user, @job]) do |f|%>
+<%=f.label :location%>
+<%=f.text_field :location%>
+<br>
+<%=f.label :scheduled_for?%>
+<%=f.datetime_select :scheduled_for?, start_year: 2020, ampm: true%>
+<br>
+<%=f.label :completed%>
+<%=f.check_box :completed%>
+<br>
+<%=f.label :duration%>
+<%=f.text_field :duration%>
+<br>
+<%=f.label :notes%>
+<%=f.text_area :notes%>
+<br>
+<%=f.collection_select :service_id, current_user.services.all, :id, :name%>
+<br>
+<%=f.collection_select :service_technician_id, current_user.service_technicians.all, :id, :name%>
+<br>
+<%=f.collection_select :client_id, current_user.clients.all, :id, :name%>
+<%=f.submit%>
+<%end %>

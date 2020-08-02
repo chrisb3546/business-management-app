@@ -19,9 +19,6 @@ class ApplicationController < ActionController::Base
         end
      end
 
-     def user_check
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-        end
-    end
+    
 
 end

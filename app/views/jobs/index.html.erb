@@ -1,6 +1,5 @@
-indexpage
-<%@jobs.each do |job|%>
-<%=job.location%>
+<h1> heres a list of all your jobs</h1>
+<%current_user.jobs.each do |job|%>
 <br>
-<%=job.scheduled_for?%>
+<%= link_to job.location, user_job_path(current_user, job) %>
 <%end%>

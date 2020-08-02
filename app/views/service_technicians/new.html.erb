@@ -1,18 +1,3 @@
 <h1> Add a new member to the team!</h1>
-<% if @service_technician.errors.any? %>
-<ul>
-  <% @service_technician.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-</ul>
-<% end %>
-<%=form_for ([@user, @service_technician]) do |f|%>
-<%=f.label :name%>
-<%=f.text_field :name%>
-
-<%=f.hidden_field :user_id%>
-
-<br>
-<%=f.submit%>
-<%end%>
+<%= render 'form' %>
 

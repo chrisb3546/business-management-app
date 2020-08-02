@@ -25,6 +25,24 @@ class UsersController < ApplicationController
         
     end
 
+    def edit
+        redirect_if_not_logged_in
+        @user = User.find_by(id: params[:id])
+        redirect_if_not_authorized
+
+    end
+
+    def update
+        @user = User.find_by(id: params[:id])
+        redirect_if_not_authorized
+        if @user.update(service_technician_params)
+       
+            redirect_to user_path(current_user, @user)
+        else 
+            render :edit
+        end
+    end
+
 
     private
     def user_params

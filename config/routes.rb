@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   delete '/logout' => 'sessions#destroy'
   
   
-  
+  get '/auth/google_oauth2/callback' => 'sessions#google'
   
   
   resources :users do

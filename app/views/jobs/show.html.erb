@@ -1,14 +1,34 @@
 <br>
+<b>This job will take place at:</b>
 <%=@job.location%>
-<br>
-<%=@job.duration%>
-<br>
-<%=@job.service_technician.name%>
-<br>
-<%=@job.service.name%>
-<br>
+<b>The client for this job is :</b>
 <%=@job.client.name%>
 <br>
+<b>The service provided will be:</b>
+<%=@job.service.name%>
+<br>
+<b>Taking place on:</b>
+<%=@job.scheduled_for?.strftime("%A, %B %d, %Y")%>
+<br>
+
+<%=@job.duration%>
+<br>
+<b>Completed by:</b>
+<%=@job.service_technician.name%>
+
+<br>
+<b>The total billing amount will be:</b>
+<%=number_to_currency(@job.service.price)%>
+<br>
+<b>Notes from this job?:</b>
 <%=@job.notes%>
 <br>
-<%=@job.completed?%>
+Has this job been completed?
+<%if @job.completed == true%>
+yes
+<%else%>
+no
+<%end %>
+
+<br>
+<%= link_to 'edit this job', edit_user_job_path(current_user, @job) %>

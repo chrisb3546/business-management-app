@@ -1,4 +1,17 @@
-Tech Show Page
-<%=@service_technician.name%>
+
+
+<h1><%=@service_technician.name%></h1>
+<br>
 <%= link_to 'edit', edit_user_service_technician_path(@service_technician.user, @service_technician) %>
+<br>
+<b>Here's a list of all the jobs that this service tech has worked on or is assigned to work on:</b>
+
+<%@service_technician.jobs.each do |job|%>
+<br>
+<li>
+<%=job.location%>, <%=job.scheduled_for?.strftime("%A, %B %d, %Y")%>
+</li>
+<%end%>
+<br>
+
 <%= link_to "Delete service_technician", user_service_technician_path(@service_technician.user, @service_technician), method: "delete"%>

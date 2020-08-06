@@ -21,18 +21,6 @@ ActiveRecord::Schema.define(version: 2020_08_06_193003) do
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
-  create_table "completed_jobs", force: :cascade do |t|
-    t.string "location"
-    t.string "client_name"
-    t.string "technician_name"
-    t.string "service_name"
-    t.integer "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.datetime "completed_on"
-    t.index ["user_id"], name: "index_completed_jobs_on_user_id"
-  end
-
   create_table "jobs", force: :cascade do |t|
     t.integer "service_technician_id"
     t.integer "client_id"
@@ -80,7 +68,6 @@ ActiveRecord::Schema.define(version: 2020_08_06_193003) do
   end
 
   add_foreign_key "clients", "users"
-  add_foreign_key "completed_jobs", "users"
   add_foreign_key "jobs", "clients"
   add_foreign_key "jobs", "service_technicians"
   add_foreign_key "jobs", "services"

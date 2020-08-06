@@ -8,8 +8,8 @@
 <li><%= link_to 'add service', new_service_path %></li>
 <li><%= link_to 'all clients', clients_path %>
 <li> <%= link_to 'add client', new_client_path %>
- <li><%= link_to 'all jobs that are not yet finished ', jobs_path %></li>
+ <li><%= link_to 'all jobs', jobs_path %></li>
 <li><%= link_to 'new job', new_job_path %></li>
 
-<li><%= link_to "Delete your Profile", user_path(@user), method: "delete"%></li>
+<li><%= link_to "Delete your Profile", user_path(current_user), method: "delete"%></li>
 </body>

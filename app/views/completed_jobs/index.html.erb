@@ -1,7 +1,12 @@
 <h1>Completed Jobs</h1>
 
+<%=form_tag completed_jobs_path, method: :get do%>
+<%=text_field_tag :query %>
+<%=submit_tag "search"%>
+<%end%>
+
 <%@completed_jobs.each do |job|%>
 <li>
-<%=job.location%>, <%=job.client_name%>
+<%= link_to job.location, completed_job_path(job) %>
 </li>
 <%end%>

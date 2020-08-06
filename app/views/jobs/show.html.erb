@@ -23,13 +23,5 @@
 <b>Notes from this job?:</b>
 <%=@job.notes%>
 <br>
-Has this job been completed?
-<%if @job.completed == true%>
-yes
-<%else%>
-no
-<%end %>
-
-<br>
 <%= link_to 'edit this job', edit_job_path(@job) %>
 <%= link_to 'delete this job', job_path(@job), method: "delete"%>

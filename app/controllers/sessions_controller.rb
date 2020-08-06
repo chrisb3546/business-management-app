@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
         else 
             redirect_to '/'
         end
-     end
+    end
 
         private
         def auth

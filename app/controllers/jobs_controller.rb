@@ -15,7 +15,7 @@ class JobsController < ApplicationController
             @job = @service_technician.jobs.build
             redirect_if_not_authorized(@service_technician)
         else 
-            @job = current_user.jobs.build#in case user isnt found to avoid error
+            @job = current_user.jobs.build
         end
         
     end 
@@ -27,16 +27,14 @@ class JobsController < ApplicationController
         else 
             @job = current_user.jobs.build(job_params)
         end
-            if @job.save && @job.completed == false
-                redirect_to job_path(@job)
-            elsif @job.completed == true
-                CompletedJob.all_completed_jobs
-                @job.destroy
-                redirect_to completed_jobs_path
-
-            else 
-                render :new 
-           
+        if @job.save && @job.completed == false
+            redirect_to job_path(@job)
+        elsif @job.completed == true
+            CompletedJob.all_completed_jobs
+            @job.destroy
+            redirect_to completed_jobs_path
+        else 
+            render :new 
         end
     end
 
@@ -71,6 +69,6 @@ class JobsController < ApplicationController
 
     private
     def job_params
-        params.require(:job).permit(:service_technician_id, :client_id, :service_id, :user_id, :location, :duration, :notes, :scheduled_for?, :completed, :query => {})
+        params.require(:job).permit(:service_technician_id, :client_id, :service_id, :user_id, :location, :duration, :notes, :scheduled_for?, :completed)
     end
 end

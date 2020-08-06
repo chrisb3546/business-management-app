@@ -34,12 +34,7 @@ class ApplicationController < ActionController::Base
     end
      
 
-    def save_jobs
-        CompletedJob.all.each do |job|
-            job.save
-
-        end
-    end
+   
 
 
     

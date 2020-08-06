@@ -1,11 +1,14 @@
 <h1>Service Show page</h1>
 
+
 <h2><%=@service.name%></h2>
 <br>
 <%=@service.description%>
 <br>
 <%=number_to_currency(@service.price)%>
 <br>
-<%= link_to "Delete service", user_service_path(@service.user, @service), method: "delete"%>
+<%= link_to "Delete service", service_path(@service), method: "delete"%>
 <br>
-<%= link_to 'Edit Service', edit_user_service_path(@service.user, @service) %>
+<%= link_to 'Edit Service', edit_service_path(@service) %>
+<br>
+<%= link_to 'All Services', services_path %>

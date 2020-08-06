@@ -1,6 +1,14 @@
-Service index page
+<h1>Service index page</h1>
+
+<%=form_tag services_path, method: :get do%>
+<%=text_field_tag :query %>
+<%=submit_tag "search"%>
+<%end%>
+
 <%@services.each do |s|%>
 <li>
-<%= link_to s.name, user_service_path(s.user, s) %>
+<%= link_to s.name, service_path(s) %>
 </li>
 <%end%>
+
+<%= link_to 'add service', new_service_path %>

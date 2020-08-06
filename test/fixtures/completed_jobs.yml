@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  location: MyString
+  client_name: MyString
+  technician_name: MyString
+  service_name: MyString
+  user: one
+
+two:
+  location: MyString
+  client_name: MyString
+  technician_name: MyString
+  service_name: MyString
+  user: two

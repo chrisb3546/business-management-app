@@ -2,81 +2,75 @@ class JobsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def index
-        
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-            @jobs = @user.jobs
-            redirect_if_not_authorized
-           else
-            redirect_to user_path(current_user)
+        if params[:service_technician_id] && @service_technician = ServiceTechnician.find_by_id(params[:service_technician_id])
+           @jobs = @service_technician.jobs
+            redirect_if_not_authorized(@service_technician)
+        else
+            @jobs = current_user.jobs.search(params[:query])
         end
-
     end
     
     def new
-        if params[:user_id] &&  @user = User.find_by(id: params[:user_id])
-        @job = @user.jobs.build
-        redirect_if_not_authorized
+        if params[:service_technician_id] && @service_technician = ServiceTechnician.find_by(id: params[:service_technician_id])
+            @job = @service_technician.jobs.build
+            redirect_if_not_authorized(@service_technician)
         else 
-            redirect_to user_path(current_user)#in case user isnt found to avoid error
-        
+            @job = current_user.jobs.build#in case user isnt found to avoid error
         end
+        
     end 
 
     def create 
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-        @job = current_user.jobs.build(job_params)
-        redirect_if_not_authorized
-            if @job.save
-           
-            redirect_to user_job_path(current_user, @job)
+        if params[:service_technician_id] && @service_technician = ServiceTechnician.find_by(id: params[:service_technician_id])
+            @job = @service_technician.user.jobs.build(job_params)
+            redirect_if_not_authorized(@service_technician)
+        else 
+            @job = current_user.jobs.build(job_params)
+        end
+            if @job.save && @job.completed == false
+                redirect_to job_path(@job)
+            elsif @job.completed == true
+                CompletedJob.all_completed_jobs
+                @job.destroy
+                redirect_to completed_jobs_path
+
             else 
-            render :new 
-            end
+                render :new 
+           
         end
     end
 
     def show
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-        @job = Job.find_by(id: params[:id])
-        redirect_if_not_authorized
-        end
-            if @job.user_id != current_user.id
-            redirect_to user_path(current_user.id)
-            
-        end
+        @job = current_user.jobs.find_by(id: params[:id]) 
+        not_found(@job)
     end
 
     def edit
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-        @job = Job.find_by(id: params[:id])
-        redirect_if_not_authorized
-        end
+        @job = current_user.jobs.find_by(id: params[:id])
+        not_found(@job)
     end
 
     def update
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-            @job = Job.find_by(id: params[:id])
-            redirect_if_not_authorized
-        end
-        if @job.update(job_params)
-           
-                redirect_to user_job_path(current_user, @job)
+        @job = current_user.jobs.find_by(id: params[:id])
+        if @job.update(job_params) && @job.completed == false
+            redirect_to job_path(@job)
+        elsif @job.completed == true
+            CompletedJob.all_completed_jobs
+            @job.destroy
+            redirect_to completed_jobs_path
         else 
-                render :edit
+            render :edit
         end
-        
     end
 
     def destroy
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-            @job = Job.find_by(id: params[:id]).destroy
-            redirect_to user_jobs_path(current_user)
-            end
+        @job = current_user.jobs.find_by(id: params[:id]).destroy
+        redirect_to jobs_path
     end
 
 
     private
     def job_params
-        params.require(:job).permit(:service_technician_id, :client_id, :service_id, :user_id, :location, :duration, :notes, :scheduled_for?, :completed)
+        params.require(:job).permit(:service_technician_id, :client_id, :service_id, :user_id, :location, :duration, :notes, :scheduled_for?, :completed, :query => {})
     end
 end

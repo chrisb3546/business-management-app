@@ -1,10 +1,14 @@
 <h1>Wecome <%=@user.username%></h1>
-
-<li><%= link_to 'See all techs', user_service_technicians_path(@user) %></li>
-<li><%= link_to 'add new tech', new_user_service_technician_path(@user) %></li>
-<li><%= link_to 'services', user_services_path(@user) %></li>
-<li><%= link_to 'add service', new_user_service_path(@user) %></li>
-<li><%= link_to 'all clients', user_clients_path(@user) %>
-<li> <%= link_to 'add client', new_user_client_path(@user) %>
- <li><%= link_to 'all jobs ', user_jobs_path(@user) %></li>
-<li><%= link_to 'new job', new_user_job_path(@user) %></li>
+<%= link_to 'Edit Your Info', edit_user_path(@user) %>
+<br>
+<body>
+<li><%= link_to 'See all techs', service_technicians_path %></li>
+<li><%= link_to 'add new tech', new_service_technician_path %></li>
+<li><%= link_to 'all services', services_path %></li>
+<li><%= link_to 'add service', new_service_path %></li>
+<li><%= link_to 'all clients', clients_path %>
+<li> <%= link_to 'add client', new_client_path %>
+ <li><%= link_to 'all jobs that are not yet finished ', jobs_path %></li>
+<li><%= link_to 'new job', new_job_path %></li>
+<li><%= link_to 'completed jobs', completed_jobs_path %></li>
+</body>

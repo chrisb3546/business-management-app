@@ -1,0 +1,2 @@
+module CompletedJobsHelper
+end

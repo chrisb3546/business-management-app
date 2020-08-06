@@ -1,5 +1,19 @@
 <h1> heres a list of all your jobs</h1>
-<%current_user.jobs.each do |job|%>
-<br>
-<%= link_to job.location, user_job_path(current_user, job) %>
+<%if !@service_technician%>
+<%=form_tag jobs_path, method: :get do%>
+<%=text_field_tag :query %>
+<%=submit_tag "search"%>
 <%end%>
+<%end%>
+<b><%= flash[:message] if flash[:message]%></b>
+<%@jobs.each do |job|%>
+
+
+<li><%= link_to job.location, job_path(job) %>, on <%=job.scheduled_for?.strftime("%A, %B %d, %Y")%></li>
+
+<%end%>
+<%if @service_technician%>
+<%= link_to 'new job for this technician', new_service_technician_job_path(@service_technician)%>
+<%end%>
+<br>
+<%= link_to 'new job', new_job_path %>

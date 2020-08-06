@@ -1,0 +1,7 @@
+<h1>Completed Jobs</h1>
+
+<%@completed_jobs.each do |job|%>
+<li>
+<%=job.location%>, <%=job.client_name%>
+</li>
+<%end%>

@@ -12,8 +12,10 @@
   <body>
 
   <%if logged_in?%>
+  <h1> <%=current_user.username%></h1>
   <%= link_to 'logout', logout_path, method: "delete" %>
   <%= link_to 'home', user_path(current_user) %>
+  <br>
   <%else %>
   <%= link_to 'home', root_path %>
   <%end%>

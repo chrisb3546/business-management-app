@@ -5,7 +5,7 @@
   <% end %>
 </ul>
 <% end %>
-<%=form_for ([@user, @service]) do |f|%>
+<%=form_for  @service do |f|%>
 <%=f.label :name%>
 <%=f.text_field :name%>
 <br>

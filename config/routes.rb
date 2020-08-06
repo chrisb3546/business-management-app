@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :completed_jobs
   root "sessions#home"
   
   get '/signup' => 'users#new'
@@ -10,14 +11,15 @@ Rails.application.routes.draw do
   
   
   get '/auth/google_oauth2/callback' => 'sessions#google'
-  
-  
-  resources :users do
-    resources :service_technicians
-    resources :services
-    resources :clients
-    resources :jobs
- end
+
+  resources :service_technicians do 
+    resources :jobs, only: [:index, :new, :create]
+  end
+  resources :services
+  resources :clients
+  resources :users, except: :index
+  resources :jobs
+
     
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

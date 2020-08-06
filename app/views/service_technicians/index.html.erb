@@ -1,7 +1,13 @@
 <h1>Service Tech index page</h1>
 
+<%=form_tag service_technicians_path, method: :get do%>
+<%=text_field_tag :query %>
+<%=submit_tag "search"%>
+<%end%>
 <%@service_technicians.each do |st|%>
 <li>
-<%= link_to st.name, user_service_technician_path(st.user, st) %>
+<%= link_to st.name, service_technician_path( st) %>
 </li>
 <%end%>
+
+<%= link_to 'add new tech', new_service_technician_path %>

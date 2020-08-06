@@ -2,16 +2,23 @@
 
 <h1><%=@service_technician.name%></h1>
 <br>
-<%= link_to 'edit', edit_user_service_technician_path(@service_technician.user, @service_technician) %>
-<br>
-<b>Here's a list of all the jobs that this service tech has worked on or is assigned to work on:</b>
 
-<%@service_technician.jobs.each do |job|%>
 <br>
-<li>
-<%=job.location%>, <%=job.scheduled_for?.strftime("%A, %B %d, %Y")%>
-</li>
-<%end%>
+<b>Here's a list of all the jobs that this <%=@service_technician.name%> has worked on or is assigned to work on:</b>
 <br>
+<%= link_to 'All jobs for this tech', service_technician_jobs_path(@service_technician) %>
 
-<%= link_to "Delete service_technician", user_service_technician_path(@service_technician.user, @service_technician), method: "delete"%>
+<br>
+<b>Would you like to edit <%=@service_technician.name%>'s' information?</b>
+<br>
+<%= link_to 'edit', edit_service_technician_path(@service_technician) %>
+<br>
+<b>Would you like to delete <%=@service_technician.name%></b>
+<br>
+<%= link_to "Delete service_technician", service_technician_path(@service_technician), method: "delete"%>
+<br>
+<b>Would you like to see a list of all the service technicians?</b>
+<%= link_to 'All Techs', service_technicians_path %>
+<b>Would you like to add a job for <%=@service_technician.name%>?
+<br>
+<%= link_to 'add job for this tech', new_service_technician_job_path(@service_technician) %>

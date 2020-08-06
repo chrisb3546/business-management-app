@@ -5,4 +5,8 @@ class Client < ApplicationRecord
   has_many :services, through: :jobs
   validates :name, presence: true
   validates :location, presence: true
+
+  scope :search, -> (query) {joins(:user).where("name LIKE ?","%#{query}%" )}
+  
+
 end

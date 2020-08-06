@@ -7,8 +7,7 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-         
-        if @user.save
+         if @user.save
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else 
@@ -28,16 +27,15 @@ class UsersController < ApplicationController
     def edit
         redirect_if_not_logged_in
         @user = User.find_by(id: params[:id])
-        redirect_if_not_authorized
+        redirect_if_not_authorized_user(@user)
 
     end
 
     def update
         @user = User.find_by(id: params[:id])
-        redirect_if_not_authorized
-        if @user.update(service_technician_params)
-       
-            redirect_to user_path(current_user, @user)
+        redirect_if_not_authorized_user(@user)
+        if @user.update(user_params)
+            redirect_to user_path(current_user)
         else 
             render :edit
         end

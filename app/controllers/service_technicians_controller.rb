@@ -1,79 +1,47 @@
 class ServiceTechniciansController < ApplicationController
     before_action :redirect_if_not_logged_in
 
-
     def index
-        
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-            @service_technicians = @user.service_technicians
-            redirect_if_not_authorized
-           else
-            redirect_to user_path(current_user)
-        end
-
+        @service_technicians = current_user.service_technicians.search(params[:query])
     end
-    
-    def new
-        if params[:user_id] &&  @user = User.find_by(id: params[:user_id])
-        @service_technician = @user.service_technicians.build
-        redirect_if_not_authorized
-        else 
-            redirect_to user_path(current_user)#in case user isnt found to avoid error
-        
-        end
-    end 
+   
+   def new
+       @service_technician = current_user.service_technicians.build
+   end 
 
-    def create 
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-        @service_technician = current_user.service_technicians.build(service_technician_params)
-        redirect_if_not_authorized
-            if @service_technician.save
-           
-            redirect_to user_service_technician_path(current_user, @service_technician)
-            else 
-            render :new 
-            end
-        end
-    end
+   def create 
+       @service_technician = current_user.service_technicians.build(service_technician_params)
+       if @service_technician.save
+          redirect_to service_technician_path(@service_technician)
+       else 
+           render :new 
+       end
+   end
 
-    def show
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-        @service_technician = ServiceTechnician.find_by(id: params[:id])
-        redirect_if_not_authorized
-        end
-            if @service_technician.user_id != current_user.id
-            redirect_to user_path(current_user.id)
-            
-        end
-    end
+   def show
+       @service_technician = current_user.service_technicians.find_by(id: params[:id]) 
+       not_found(@service_technician)
+   end
 
-    def edit
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-        @service_technician = ServiceTechnician.find_by(id: params[:id])
-        redirect_if_not_authorized
-        end
-    end
+   def edit
+       @service_technician = current_user.service_technicians.find_by(id: params[:id])
+       not_found(@service_technician)
+   end
 
-    def update
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-            @service_technician = ServiceTechnician.find_by(id: params[:id])
-            redirect_if_not_authorized
-        end
-        if @service_technician.update(service_technician_params)
-           
-                redirect_to user_service_technician_path(current_user, @service_technician)
-        else 
-                render :edit
-        end
-        
-    end
+   def update
+       @service_technician = current_user.service_technicians.find_by(id: params[:id])
+       if @service_technician.update(service_technician_params)
+          redirect_to service_technician_path(@service_technician)
+       else 
+           render :edit
+       end
+       
+   end
 
-    def destroy
-        if params[:user_id] && @user = User.find_by(id: params[:user_id])
-            @service_technician = ServiceTechnician.find_by(id: params[:id]).destroy
-            redirect_to user_service_technicians_path(current_user)
-            end
-    end
+   def destroy
+       @service_technician = current_user.service_technicians.find_by(id: params[:id]).destroy
+       redirect_to service_technicians_path
+   end
 
 
 

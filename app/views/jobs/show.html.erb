@@ -31,4 +31,5 @@ no
 <%end %>
 
 <br>
-<%= link_to 'edit this job', edit_user_job_path(current_user, @job) %>
+<%= link_to 'edit this job', edit_job_path(@job) %>
+<%= link_to 'delete this job', job_path(@job), method: "delete"%>

@@ -1,5 +1,9 @@
 class ServiceTechniciansController < ApplicationController
     before_action :redirect_if_not_logged_in
+    before_action :find_service_technician, only: [:show, :edit, :update, :destroy]
+    before_action only: [:show, :edit] do 
+        not_found(@service_technician)
+    end
 
     def index
         @service_technicians = current_user.service_technicians.search(params[:query])
@@ -18,18 +22,13 @@ class ServiceTechniciansController < ApplicationController
        end
    end
 
-   def show
-       @service_technician = current_user.service_technicians.find_by(id: params[:id]) 
-       not_found(@service_technician)
+   def show 
    end
 
    def edit
-       @service_technician = current_user.service_technicians.find_by(id: params[:id])
-       not_found(@service_technician)
    end
 
    def update
-       @service_technician = current_user.service_technicians.find_by(id: params[:id])
        if @service_technician.update(service_technician_params)
           redirect_to service_technician_path(@service_technician)
        else 
@@ -38,16 +37,22 @@ class ServiceTechniciansController < ApplicationController
        
    end
 
-   def destroy
-       @service_technician = current_user.service_technicians.find_by(id: params[:id]).destroy
+    def destroy
+       @service_technician.destroy
        redirect_to service_technicians_path
-   end
+    end
 
 
 
     private 
     def service_technician_params
         params.require(:service_technician).permit(:name, :user_id)
-        
     end
+
+
+    def find_service_technician
+        @service_technician = current_user.service_technicians.find_by(id: params[:id])
+    end
+
+
 end

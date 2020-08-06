@@ -1,5 +1,9 @@
 class ClientsController < ApplicationController
     before_action :redirect_if_not_logged_in
+    before_action :find_client, only: [:show, :edit, :update, :destroy]
+    before_action only: [:show, :edit] do 
+        not_found(@client)
+    end
 
     def index
         @clients = current_user.clients.search(params[:query])
@@ -10,36 +14,30 @@ class ClientsController < ApplicationController
     end 
 
     def create 
-       @client = current_user.clients.build(client_params)
-       if @client.save
+        @client = current_user.clients.build(client_params)
+        if @client.save
             redirect_to client_path(@client)
-       else 
+        else 
             render :new 
-       end
+        end
     end
 
-   def show
-       @client = current_user.clients.find_by(id: params[:id]) 
-        not_found(@client)
-   end
+    def show
+    end
 
-   def edit
-       @client = current_user.clients.find_by(id: params[:id])
-       not_found(@client)
-   end
+    def edit
+    end
 
    def update
-       @client = current_user.clients.find_by(id: params[:id])
-       if @client.update(client_params)
+        if @client.update(client_params)
           redirect_to client_path( @client)
-       else 
+        else 
            render :edit
-       end
-       
-   end
+        end
+    end
 
    def destroy
-       @client = current_user.clients.find_by(id: params[:id]).destroy
+       @client.destroy
        redirect_to clients_path
    end
 
@@ -48,6 +46,9 @@ class ClientsController < ApplicationController
     private 
     def client_params
         params.require(:client).permit(:name, :location, :user_id)
-        
+    end
+
+    def find_client
+        @client = current_user.clients.find_by(id: params[:id])
     end
 end

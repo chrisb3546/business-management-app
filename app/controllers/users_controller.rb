@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
     before_action :current_user
+    before_action :redirect_if_not_logged_in, only: [:show, :edit]
+    before_action :find_user, only: [:show, :edit, :update]
+    before_action only: [:show, :edit, :update] do 
+        redirect_if_not_authorized_user(@user)
+    end
     
     def new
         @user = User.new
@@ -16,24 +21,12 @@ class UsersController < ApplicationController
     end
 
     def show 
-        redirect_if_not_logged_in
-        @user = User.find_by(id: params[:id])
-        if @user.id != current_user.id
-            redirect_to user_path(current_user.id)
-        end
-        
     end
 
     def edit
-        redirect_if_not_logged_in
-        @user = User.find_by(id: params[:id])
-        redirect_if_not_authorized_user(@user)
-
     end
 
     def update
-        @user = User.find_by(id: params[:id])
-        redirect_if_not_authorized_user(@user)
         if @user.update(user_params)
             redirect_to user_path(current_user)
         else 
@@ -50,5 +43,9 @@ class UsersController < ApplicationController
     private
     def user_params
         params.require(:user).permit(:username, :email, :password, :business_name)
+    end
+
+    def find_user
+        @user = User.find_by(id: params[:id])
     end
 end

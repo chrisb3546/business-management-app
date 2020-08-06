@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :completed_jobs
+  
   root "sessions#home"
   
   get '/signup' => 'users#new'
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :clients
   resources :users, except: :index
   resources :jobs
+  
 
     
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

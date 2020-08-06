@@ -1,5 +1,9 @@
 class JobsController < ApplicationController
     before_action :redirect_if_not_logged_in
+    before_action :find_job, only: [:show, :edit, :update, :destroy]
+    before_action only: [:show, :edit] do 
+        not_found(@job)
+    end
 
     def index
         if params[:service_technician_id] && @service_technician = ServiceTechnician.find_by_id(params[:service_technician_id])
@@ -27,42 +31,29 @@ class JobsController < ApplicationController
         else 
             @job = current_user.jobs.build(job_params)
         end
-        if @job.save && @job.completed == false
+        if @job.save 
             redirect_to job_path(@job)
-        elsif @job.completed == true
-            CompletedJob.all_completed_jobs
-            @job.destroy
-            redirect_to completed_jobs_path
         else 
             render :new 
         end
     end
 
     def show
-        @job = current_user.jobs.find_by(id: params[:id]) 
-        not_found(@job)
     end
 
     def edit
-        @job = current_user.jobs.find_by(id: params[:id])
-        not_found(@job)
     end
 
     def update
-        @job = current_user.jobs.find_by(id: params[:id])
-        if @job.update(job_params) && @job.completed == false
+        if @job.update(job_params) 
             redirect_to job_path(@job)
-        elsif @job.completed == true
-            CompletedJob.all_completed_jobs
-            @job.destroy
-            redirect_to completed_jobs_path
         else 
             render :edit
         end
     end
 
     def destroy
-        @job = current_user.jobs.find_by(id: params[:id]).destroy
+        @job.destroy
         redirect_to jobs_path
     end
 
@@ -71,4 +62,11 @@ class JobsController < ApplicationController
     def job_params
         params.require(:job).permit(:service_technician_id, :client_id, :service_id, :user_id, :location, :duration, :notes, :scheduled_for?, :completed)
     end
+
+    def find_job
+        @job = current_user.jobs.find_by(id: params[:id])
+    end
+
+    
+
 end

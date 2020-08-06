@@ -1,5 +1,9 @@
 class ServicesController < ApplicationController
     before_action :redirect_if_not_logged_in 
+    before_action :find_service, only: [:show, :edit, :update, :destroy]
+    before_action only: [:show, :edit] do 
+        not_found(@service)
+    end
     
 
     def index
@@ -20,17 +24,12 @@ class ServicesController < ApplicationController
     end
 
     def show
-        @service = current_user.services.find_by(id: params[:id]) 
-        not_found(@service)
     end
 
     def edit
-        @service = current_user.services.find_by(id: params[:id])
-        not_found(@service)
     end
 
     def update
-        @service = current_user.services.find_by(id: params[:id])
         if @service.update(service_params)
            redirect_to service_path( @service)
         else 
@@ -40,7 +39,7 @@ class ServicesController < ApplicationController
     end
 
     def destroy
-        @service = current_user.services.find_by(id: params[:id]).destroy
+        @service.destroy
         redirect_to services_path
     end
 
@@ -49,6 +48,9 @@ class ServicesController < ApplicationController
     private 
     def service_params
         params.require(:service).permit(:name, :description, :price, :user_id)
-        
+    end
+
+    def find_service
+        @service = current_user.services.find_by(id: params[:id])
     end
 end

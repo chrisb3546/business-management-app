@@ -1,24 +1,7 @@
-# README
+# Business Management App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Generic app designed to manage a businesses contracted employees, offered services, and completed jobs.
 
-Things you may want to cover:
+# Installation Guide
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Clone project in terminal. Run your server. The gems you will need for this installation are as follows: gem 'rails', '~> 6.0.3', '>= 6.0.3.2', gem 'sqlite3', '~> 1.4', gem 'puma', '~> 4.1', gem 'sass-rails', '>= 6', gem 'webpacker', '~> 4.0',  gem 'bcrypt', '~> 3.1.7', gem 'omniauth', gem 'dotenv-rails', gem 'omniauth-google-oauth2'

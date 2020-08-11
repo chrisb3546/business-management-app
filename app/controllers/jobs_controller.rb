@@ -1,5 +1,4 @@
 class JobsController < ApplicationController
-    before_action :redirect_if_not_logged_in
     before_action :find_job, only: [:show, :edit, :update, :destroy]
     before_action only: [:show, :edit] do 
         not_found(@job)

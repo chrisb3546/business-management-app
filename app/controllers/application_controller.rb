@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    
+    before_action :redirect_if_not_logged_in
     helper_method :current_user, :logged_in?
     
     def current_user
@@ -15,13 +15,13 @@ class ApplicationController < ActionController::Base
     end
 
     def redirect_if_not_authorized(attr)
-        if current_user.id != attr.user_id
+        if current_user.id != attr.user_id 
             redirect_to user_path(current_user)
         end
     end
 
     def redirect_if_not_authorized_user(attr)
-        if attr.id != current_user.id
+        if !attr || attr.id != current_user.id
             redirect_to user_path(current_user)
         end
 

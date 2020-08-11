@@ -1,5 +1,5 @@
 class ServiceTechniciansController < ApplicationController
-    before_action :redirect_if_not_logged_in
+    # before_action :redirect_if_not_logged_in
     before_action :find_service_technician, only: [:show, :edit, :update, :destroy]
     before_action only: [:show, :edit] do 
         not_found(@service_technician)

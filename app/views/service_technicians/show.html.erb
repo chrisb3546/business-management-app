@@ -18,9 +18,10 @@
 <%= link_to "Delete service_technician", service_technician_path(@service_technician), method: "delete"%>
 <br>
 <b>Would you like to see a list of all the service technicians?</b>
+<br>
 <%= link_to 'All Techs', service_technicians_path %>
+<br>
 <b>Would you like to add a job for <%=@service_technician.name%>?
 <br>
 <%= link_to 'add job for this tech', new_service_technician_job_path(@service_technician) %>
 <br>
-<%= link_to 'All Techs', service_technicians_path %>

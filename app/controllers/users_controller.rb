@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :current_user
-    before_action :redirect_if_not_logged_in, only: [:show, :edit]
+    skip_before_action :redirect_if_not_logged_in, except: [:show, :edit]
+    # before_action :redirect_if_not_logged_in, only: [:show, :edit]
     before_action :find_user, only: [:show, :edit, :update]
     before_action only: [:show, :edit, :update] do 
         redirect_if_not_authorized_user(@user)

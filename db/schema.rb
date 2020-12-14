@@ -10,29 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_193003) do
+ActiveRecord::Schema.define(version: 2020_12_14_155346) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "clients", force: :cascade do |t|
     t.string "name"
     t.text "location"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.integer "service_technician_id"
-    t.integer "client_id"
-    t.integer "service_id"
-    t.integer "user_id", null: false
+    t.bigint "service_technician_id"
+    t.bigint "client_id"
+    t.bigint "service_id"
+    t.bigint "user_id", null: false
     t.text "location"
     t.string "duration"
     t.text "notes"
     t.datetime "scheduled_for?"
+    t.boolean "completed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "completed"
     t.index ["client_id"], name: "index_jobs_on_client_id"
     t.index ["service_id"], name: "index_jobs_on_service_id"
     t.index ["service_technician_id"], name: "index_jobs_on_service_technician_id"
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_193003) do
   create_table "service_technicians", force: :cascade do |t|
     t.string "name"
     t.string "services"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_service_technicians_on_user_id"
@@ -52,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_193003) do
     t.string "name"
     t.text "description"
     t.float "price"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_services_on_user_id"

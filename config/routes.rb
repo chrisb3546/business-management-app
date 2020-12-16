@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
+  get 'delete_profile' => 'users#destroy'
   
   
   get '/auth/google_oauth2/callback' => 'sessions#google'
@@ -17,7 +18,7 @@ Rails.application.routes.draw do
   end
   resources :services
   resources :clients
-  resources :users, except: :index
+  resources :users, except: [:index, :delete]
   resources :jobs
   
 

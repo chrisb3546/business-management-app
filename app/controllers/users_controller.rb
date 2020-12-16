@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     before_action :current_user
     skip_before_action :redirect_if_not_logged_in, except: [:show, :edit]
     # before_action :redirect_if_not_logged_in, only: [:show, :edit]
-    before_action :find_user, only: [:show, :edit, :update]
+    before_action :find_user, only: [:show, :edit, :update, :destroy]
     before_action only: [:show, :edit, :update] do 
         redirect_if_not_authorized_user(@user)
     end
@@ -36,8 +36,7 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        byebug
-        current_user.destroy
+        @user.destroy
         redirect_to root_path
     end
 

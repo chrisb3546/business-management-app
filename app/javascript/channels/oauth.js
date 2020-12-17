@@ -5453,7 +5453,7 @@
         }
         return output;
       },
-      binb_sha1: function(x, len) {
+       binb_sha1: function(x, len) {
         var a, b, c, d, e, i, j, olda, oldb, oldc, oldd, olde, t, w;
         x[len >> 5] |= 0x80 << (24 - len % 32);
         x[((len + 64 >> 9) << 4) + 15] = len;

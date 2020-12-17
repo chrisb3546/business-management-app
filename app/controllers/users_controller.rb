@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     before_action only: [:show, :edit, :update] do 
         redirect_if_not_authorized_user(@user)
     end
+    skip_before_action :protect_from_forgery, raise: false
     
     def new
         @user = User.new

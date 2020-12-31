@@ -14,6 +14,9 @@
 <%=f.label :scheduled_for?%>
 <%=f.datetime_select :scheduled_for?, start_year: 2020, ampm: true%>
 <br>
+<%=f.label :job_time_zone%>
+<%=f.time_zone_select :job_time_zone%>
+<br>
 <%=f.label :completed%>
 <%=f.check_box :completed%>
 <br>

@@ -12,7 +12,8 @@
 <%end%>
 <br>
 <b>Taking place on:</b>
-<%=@job.scheduled_for?.strftime("%A, %B %d, %Y")%>
+<%=@job.scheduled_for?.strftime("%A, %B %d, %Y, %I:%M %P")%>
+<%=@job.job_time_zone%>
 <br>
 
 <%=@job.duration%>

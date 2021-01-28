@@ -25,3 +25,35 @@
 #home-container {
     margin-top: 20px;
 }
+
+.jumbotron {
+    background-image:asset-url('planning_image.jpg') ;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 425px;
+    text-decoration-color: black ;
+
+}
+
+.jumbotron-header {
+    text-align: center;
+    color: black;
+    
+}
+html,
+body {
+    height: 100%;
+    background-color: white ;
+    text-decoration-color: black;
+  }
+  
+  #page-content {
+    flex: 1 0 auto;
+  }
+  
+  #sticky-footer {
+    flex-shrink: none;
+  }
+  
+  

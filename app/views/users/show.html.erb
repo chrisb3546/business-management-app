@@ -1,10 +1,11 @@
+<body>
 <h1 class="text-center mt-4 ">Welcome <%=@user.username%></h1>
 <div class="mx-auto mt-4">
     <div class="card text-center" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Service Technicians</h5>
             <p class="card-text">See All Service Technicians</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <%= link_to 'See all technicians', service_technicians_path, class:"btn btn-dark"%>
         </div>
     </div>
 </div>
@@ -14,7 +15,7 @@
         <div class="card-body">
             <h5 class="card-title">Services</h5>
             <p class="card-text">See All Services</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <%= link_to 'all services', services_path,  class: "btn btn-dark"%>
         </div>
     </div>
 </div>
@@ -24,7 +25,7 @@
         <div class="card-body">
             <h5 class="card-title">Clients</h5>
             <p class="card-text">See All Clients</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <%= link_to 'all clients', clients_path, class:"btn btn-dark"%>
         </div>
     </div>
 </div>
@@ -34,21 +35,16 @@
         <div class="card-body">
             <h5 class="card-title">Jobs</h5>
             <p class="card-text">Jobs</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <%= link_to 'all jobs', jobs_path, class:"btn btn-dark" %>
         </div>
     </div>
 </div>
 <%= link_to 'Edit Your Info', edit_user_path(@user) %>
 <br>
-<body>
-<li><%= link_to 'See all techs', service_technicians_path %></li>
+
 <li><%= link_to 'add new tech', new_service_technician_path %></li>
-<li><%= link_to 'all services', services_path %></li>
 <li><%= link_to 'add service', new_service_path %></li>
-<li><%= link_to 'all clients', clients_path %>
 <li> <%= link_to 'add client', new_client_path %>
- <li><%= link_to 'all jobs', jobs_path %></li>
 <li><%= link_to 'new job', new_job_path %></li>
 
-<li><%= link_to "Delete your Profile", user_path(current_user), method: "delete"%></li>
 </body>

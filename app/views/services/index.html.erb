@@ -6,9 +6,11 @@
 <%end%>
 
 <%@services.each do |s|%>
-<li>
-<%= link_to s.name, service_path(s) %>
-</li>
+<div class="card" style="width: 18rem;">
+  <ul class="list-group list-group-flush">
+    <li ><%= link_to s.name, service_path(s), class:"list-group-item" %></li>
+  </ul>
+</div>
 <%end%>
 
 <%= link_to 'add service', new_service_path %>

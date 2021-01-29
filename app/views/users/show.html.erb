@@ -1,4 +1,43 @@
-<h1>Welcome <%=@user.username%></h1>
+<h1 class="text-center mt-4 ">Welcome <%=@user.username%></h1>
+<div class="mx-auto mt-4">
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Service Technicians</h5>
+            <p class="card-text">See All Service Technicians</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+</div>
+
+<div class="mx-auto mt-4">
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Services</h5>
+            <p class="card-text">See All Services</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+</div>
+
+<div class="mx-auto mt-4">
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Clients</h5>
+            <p class="card-text">See All Clients</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+</div>
+
+<div class="mx-auto mt-4">
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Jobs</h5>
+            <p class="card-text">Jobs</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+</div>
 <%= link_to 'Edit Your Info', edit_user_path(@user) %>
 <br>
 <body>

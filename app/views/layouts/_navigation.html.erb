@@ -28,13 +28,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <li><%= link_to 'See all techs', service_technicians_path, class:"nav-link" %></li>
+          <li><%= link_to 'Edit Your Info', edit_user_path(current_user), class:"nav-link" %></li>
         </li>
         <li class="nav-item ">
-         <li><%= link_to 'all services', services_path, class:"nav-link" %> </li> 
-        </li>
-        <li class="nav-item ">
-        <%= link_to 'logout', logout_path, method: "delete", class:"nav-link" %>
+        <%= link_to 'Log Out', logout_path, method: "delete", class:"nav-link" %>
         </li>
       </ul>
       </form>

@@ -1,3 +1,4 @@
+
 <% if @service.errors.any? %>
 <ul>
   <% @service.errors.full_messages.each do |msg| %>
@@ -5,17 +6,22 @@
   <% end %>
 </ul>
 <% end %>
-<%=form_for  @service do |f|%>
-<%=f.label :name%>
-<%=f.text_field :name%>
-<br>
-<%=f.label :description%>
-<%=f.text_area :description%>
-<%=f.hidden_field :user_id%>
-<br>
-<%=f.label :price%>
-<%=f.number_field :price, step: 0.1%>
-<br>
 
-<%=f.submit%>
+
+<%=form_for  @service do |f|%>
+<div class="form-group">
+<%=f.label :name%>
+<%=f.text_field :name, class:'form-control'%>
+</div>
+<div class="form-group">
+<%=f.label :description%>
+<%=f.text_area :description, class:'form-control'%>
+<%=f.hidden_field :user_id%>
+</div>
+<div class="form-group">
+<%=f.label :price%>
+<%=f.number_field :price, step: 0.1, class:'form-control'%>
+</div>
+
+<%=f.submit class:'btn-dark btn-lg'%>
 <%end %>

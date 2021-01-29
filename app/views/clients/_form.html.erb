@@ -6,16 +6,18 @@
 </ul>
 <% end %>
 <%=form_for @client do |f|%>
-<%=f.label :name%>
-<%=f.text_field :name%>
-<br>
-<%=f.label :location%>
-<%=f.text_field :location%>
-<br>
+<div class='form-group'>
+  <%=f.label :name%>
+  <%=f.text_field :name, class:'form-control'%>
+  <br>
+  <%=f.label :location%>
+  <%=f.text_field :location, class:'form-control'%>
+  <br>
 
 
-<%=f.hidden_field :user_id%>
+  <%=f.hidden_field :user_id%>
 
-<br>
-<%=f.submit%>
+  <br>
+  <%=f.submit%>
+</div>
 <%end%>

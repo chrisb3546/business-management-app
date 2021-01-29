@@ -6,9 +6,12 @@
 <%end%>
 
 <%@clients.each do |c|%>
-<li>
-<%= link_to c.name, client_path(c) %>
-</li>
+<div class="card" style="width: 18rem;">
+  <ul class="list-group list-group-flush">
+    <li class = "list-group-item"><%= link_to c.name, client_path(c) %></li>
+  </ul>
+</div>
+
 <%end%>
 
  <%= link_to 'add client', new_client_path %>

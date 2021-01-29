@@ -8,9 +8,11 @@
 <b><%= flash[:message] if flash[:message]%></b>
 <%@jobs.each do |job|%>
 
-
-<li><%= link_to job.location, job_path(job) %>, on <%=job.scheduled_for?.strftime("%A, %B %d, %Y")%></li>
-
+<div class="card" style="width: 18rem;">
+  <ul class="list-group list-group-flush">
+    <li class = "list-group-item"><%= link_to job.location, job_path(job) %>, on <%=job.scheduled_for?.strftime("%A, %B %d, %Y")%></li>
+  </ul>
+</div>
 <%end%>
 <%if @service_technician%>
 <%= link_to 'new job for this technician', new_service_technician_job_path(@service_technician)%>

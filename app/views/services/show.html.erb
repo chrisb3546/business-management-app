@@ -1,3 +1,21 @@
+<div class="card">
+  <h5 class="card-header"><%=@service.name%></h5>
+  <div class="card-body">
+    <h5 class="card-title"><%=@service.description%></h5>
+    <p class="card-text"><br>
+<%=number_to_currency(@service.price)%>
+<br>
+<%= link_to "Delete service", service_path(@service), class:"btn btn-dark", method: "delete"%>
+<br>
+<br>
+<%= link_to 'Edit Service', edit_service_path(@service), class:"btn btn-dark" %>
+<br>
+<br>
+<%= link_to 'All Services', services_path, class:"btn btn-dark" %></p>
+
+  </div>
+</div>
+
 <h1>Service Show page</h1>
 
 

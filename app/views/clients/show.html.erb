@@ -1,4 +1,32 @@
+<div class="card">
+  <h4 class="card-header">Client Profile</h4>
+  <div class="card-body">
+    <h5 class="card-title">Client Name: <%=@client.name%></h5>
+    <p class="card-text"><br>
+    <h3>Client Address: <%=@client.location%></h3>
+    <br>
+    <b>Here's a list of all jobs that this client has scheduled and or had completed:</b>
+    <br>
+    <%@client.jobs.each do |job|%>
+    <br>
+    <li>
+    <%=link_to job.location , job_path(job) %>, on <%=job.scheduled_for?.strftime("%A, %B %d, %Y")%>
+    </li>
+    <%end%>
+    <br>
+    <%= link_to 'edit', edit_client_path(@client), class:"btn btn-dark" %>
+    <br>
+    <br>
+    <%= link_to "Delete client", client_path(@client), class:"btn btn-dark", method: "delete"%>
+    <br>
+    <br>
+    <%= link_to 'All clients', clients_path, class:"btn btn-dark" %></p>
+    </div>
+</div>
+
 <h1>Client Profile</h1>
+
+
 <br>
 <h2>Client Name: <%=@client.name%></h2>
 <br>

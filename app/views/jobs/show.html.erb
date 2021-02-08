@@ -1,4 +1,49 @@
 <br>
+<div class="card">
+  <h5 class="card-header"><b>This job will take place at:</b>
+<%=@job.location%></h5>
+  <div class="card-body">
+    <h5 class="card-title"><%if @job.client%>
+        <b>The client for this job is :</b>
+        <%=@job.client.name%>
+        <%end%></h5>
+    <p class="card-text"><br>
+<b>The service provided will be:</b>
+<%if @job.service%>
+<%=@job.service.name%>
+<%end%>
+<br>
+<b>Taking place on:</b>
+<%=@job.scheduled_for?.strftime("%A, %B %d, %Y, %I:%M %P")%>
+<%=@job.job_time_zone%>
+<br>
+
+<%=@job.duration%>
+<br>
+<%if @job.service_technician%>
+<b>Completed by:</b>
+<%=@job.service_technician.name%>
+<%end%>
+<br>
+<b>Was this job completed?</b>
+<%if @job.completed%>
+yes
+<%else %>
+no
+<%end%>
+<br>
+<%if @job.service%>
+<b>The total billing amount will be:</b>
+<%=number_to_currency(@job.service.price)%>
+<%end%>
+<br>
+<b>Notes from this job?:</b>
+<%=@job.notes%>
+<br></p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+<br>
 <b>This job will take place at:</b>
 <%=@job.location%>
 <%if @job.client%>

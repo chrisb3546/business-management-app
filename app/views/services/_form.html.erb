@@ -1,11 +1,5 @@
 
-<% if @service.errors.any? %>
-<ul>
-  <% @service.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-</ul>
-<% end %>
+<% render 'shared/errors' %>
 
 
 <%=form_for  @service do |f|%>

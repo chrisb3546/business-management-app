@@ -40,7 +40,7 @@ no
 <b>Notes from this job?:</b>
 <%=@job.notes%>
 <br></p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <%= link_to 'edit this job', edit_job_path(@job), class:"btn btn-dark" %> | <%= link_to 'delete this job', job_path(@job), class:"btn btn-dark", method: "delete"%>
   </div>
 </div>
 <br>
@@ -83,5 +83,5 @@ no
 <b>Notes from this job?:</b>
 <%=@job.notes%>
 <br>
-<%= link_to 'edit this job', edit_job_path(@job) %>
-<%= link_to 'delete this job', job_path(@job), method: "delete"%>
+<%= link_to 'edit this job', edit_job_path(@job), class:"btn btn-dark" %>
+<%= link_to 'delete this job', job_path(@job), class:"btn btn-dark", method: "delete"%>
